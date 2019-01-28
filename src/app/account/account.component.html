@@ -1,0 +1,60 @@
+<p></p>
+<div class="container">
+  <div class="panel-group">
+   <div class="panel panel-default">
+    <div class="panel-heading"> <h3> My Account </h3></div>
+    <div class="panel-body">
+
+      <div>
+          <a href="" class="white-text mx-3"><h2> Account Details</h2></a>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action">Amount : <strong>{{details.amount}}</strong></li>
+          <li class="list-group-item list-group-item-action">Type : <strong>{{details.type_compte}}</strong></li>
+          <li class="list-group-item list-group-item-action">Date : <strong>{{details.date|date:'dd/MM/yyyy : HH:mm'}}</strong></li>
+        </ul>
+      </div>
+      <p></p>
+      <div >
+        <form #f = "ngForm" (ngSubmit)="onAddOperation(f.value)">
+        <div class="form-group">
+            <label for="basic-url">Type Operation :</label>
+            <select required="" name="type" ngModel type="text" [(ngModel)]="operation.type">
+              <option value="versement"> Versement</option>
+              <option value="retrait">Retrait</option>
+            </select>
+          <label for="basic-url">Montant :</label>
+          <input required="" name="amount" ngModel type="number" [(ngModel)]="operation.amount" >
+          <button [disabled] = "!f.valid" type="submit" class="btn btn-primary"> Faire une operation</button>
+        </div>
+      </form>
+      </div>
+      
+        <a href="" class="white-text mx-3"><h2> Account History</h2></a>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"> Num</th>
+              <th scope="col"> Type</th>
+              <th scope="col"> Date</th>
+              <th scope="col"> Amount</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let o of operations; index as i" class="table-info">
+              <th scope="row">{{i}}</th>
+              <td >{{o.type}}</td>
+              <td >{{o.date|date:'dd/MM/yyyy : HH:mm'}}</td>
+              <td > <span class="badge"> {{o.amount}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        
+      
+
+    </div>
+
+  </div>
+</div>
+
+</div>
